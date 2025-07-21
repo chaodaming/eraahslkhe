@@ -1,0 +1,232 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+#top-bar {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  /* 👈 重點：讓所有按鈕靠右 */
+  width: 100%;
+  /* 需要撐滿 panel-top 才能把內容推到右邊 */
+}
+
+#panel-top {
+  display: flex;
+  padding: 0.5vh 1vw;
+  /* 更靈活的高度 */
+  padding-right: 8px;
+  background: #111;
+}
+
+#top-bar>div {
+  background: #333;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid #666;
+  white-space: nowrap;
+  align-items: center;
+}
+
+#filter-panel,
+#search-panel,
+#sort-panel {
+  position: fixed;
+  top: 50px;
+  right: 10px;
+  width: 300px;
+  max-height: 80%;
+  overflow-y: auto;
+  background: #2a2a2a;
+  border: 1px solid #555;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+  z-index: 9;
+}
+
+#filter-panel.collapsed,
+#search-panel.collapsed,
+#sort-panel.collapsed {
+  display: none;
+}
+
+.sort-label {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.main {
+  display: flex;
+  height: 94vh;
+}
+
+.panel {
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.panel.left {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 30%;
+  border-right: 1px solid #444;
+  background: #222;
+}
+
+#div-desc {
+  flex-grow: 1;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+
+.panel.middle {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  border-right: 1px solid #444;
+  background: #1a1a1a;
+}
+
+#deck-title {
+  flex-basis: 10%;
+}
+
+#deck-list {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 2px;
+  padding: 6px;
+  align-content: start;
+  overflow-y: auto;
+}
+
+.panel.right {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 40%;
+  background: #222;
+}
+
+.panel.right h2 {
+  flex-shrink: 0;
+  z-index: 1;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+#card-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* 每行 3 張 */
+  gap: 6px;
+  padding: 6px;
+  align-content: start;
+  overflow-y: auto;
+  /* 垂直捲動 */
+}
+
+.card-item {
+  padding: 6px 6px;
+  margin: 2px 2px;
+  background: #333;
+  border: 1px solid #555;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 4px;
+}
+
+#card-categories button {
+  background: #444;
+  color: #fff;
+  border: 1px solid #777;
+  margin: 2px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#card-categories button:hover {
+  background: #666;
+}
+
+.card-item:hover {
+  background: #444;
+}
+
+.card-item.selected {
+  background: #555;
+  font-weight: bold;
+}
+
+fieldset {
+  margin-bottom: 10px;
+  border: 1px solid #555;
+  padding: 8px;
+}
+
+legend {
+  font-weight: bold;
+  padding: 0 4px;
+  color: #ccc;
+}
+
+label {
+  display: block;
+  margin: 4px 0;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 6px;
+  margin-bottom: 10px;
+  border: 1px solid #555;
+  background: #1a1a1a;
+  color: #fff;
+  border-radius: 4px;
+}
+
+button {
+  padding: 6px 10px;
+  background: #555;
+  color: #fff;
+  border: 1px solid #777;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #666;
+}
+
+.desc-link {
+  color: #4ec9ff;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.desc-link:hover {
+  color: #00ffff;
+}
+
+/* 隱藏垂直滾動條 */
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+/* 隱藏水平滾動條 */
+::-webkit-scrollbar-horizontal {
+  height: 0px;
+}
+
+/* 隱藏角落的滾動條交點 */
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}

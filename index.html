@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>OCGカードビューア</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body ondrop="handleDrop(event)" ondragover="allowDrop(event)">
+  <div id="panel-top">
+    <div id="top-bar">
+      <div id="export" onclick="exportDeck()">輸出</div>
+      <div id="import" onclick="importDeck()">輸入</div>
+      <div id="filter-toggle" onclick="toggleFilter()">🔍 フィルター</div>
+      <div id="search-toggle" onclick="toggleSearch()">🔍 サーチ</div>
+      <div id="sort-toggle" onclick="toggleSort()">⇅ ソート</div>
+      <div id="reset-toggle" onclick="resetFilters(); resetSearch()">⭮ リセット</div>
+    </div>
+
+    <div id="filter-panel" class="collapsed">
+      <h2>フィルター</h2>
+      <input type="text" id="filter-category" placeholder="カテゴリで濾過">
+      <button onclick="renderCardList()">確定</button>
+      <button onclick="resetFilters()">リセット</button>
+      <div id="filters"></div>
+    </div>
+
+    <div id="search-panel" class="collapsed">
+      <h2>検索</h2>
+      <input type="text" id="search-text" placeholder="ＩＤ・名前・略称・説明を検索">
+      <button onclick="handleSearch()">確定</button>
+      <button onclick="resetSearch()">リセット</button>
+      <br><br>
+      <div id="search-history"></div>
+    </div>
+
+    <div id="sort-panel" class="collapsed">
+      <h2>排序</h2>
+      <fieldset>
+        <label class="sort-label"><input type="radio" name="sort-order" value="" checked> 預設</label>
+        <br>atk<br>
+        <label class="sort-label"><input type="radio" name="sort-order" value="atk-desc"> 降序</label>
+        <label class="sort-label"><input type="radio" name="sort-order" value="atk-asc"> 升序</label>
+        <br>def<br>
+        <label class="sort-label"><input type="radio" name="sort-order" value="def-desc"> 降序</label>
+        <label class="sort-label"><input type="radio" name="sort-order" value="def-asc"> 升序</label>
+      </fieldset>
+    </div>
+  </div>
+
+  <div class="main">
+    <!-- 左側卡片資訊 -->
+    <div class="panel left">
+      <h2>カード情報</h2>
+      <div id="card-controls"></div>
+      <div><strong>ID:</strong> <span id="card-id"></span></div>
+      <div><strong>名前:</strong> <span id="card-name"></span></div>
+      <div><strong>略称:</strong> <span id="card-shortname"></span></div>
+      <div><strong>カテゴリ:</strong> <span id="card-categories"></span></div>
+      <div><strong>種類:</strong> <span id="card-type"></span></div>
+      <div><strong>属性:</strong> <span id="card-attr"></span></div>
+      <div><strong>種族:</strong> <span id="card-race"></span></div>
+      <div><strong>レベル:</strong> <span id="card-level"></span></div>
+      <div><strong>攻撃力:</strong> <span id="card-atk"></span></div>
+      <div><strong>守備力:</strong> <span id="card-def"></span></div>
+      <div><strong>性別:</strong> <span id="card-gender"></span></div>
+      <div><strong>説明:</strong></div>
+      <div id="div-desc"><span id="card-desc"></span></div>
+    </div>
+
+    <!-- 中間デッキ欄位（有分頁） -->
+    <div class="panel middle">
+      <h2 id="deck-title">主デッキ</h2>
+      <div id="deck-tabs">
+        <button onclick="switchDeckTab('main')">主デッキ</button>
+        <button onclick="switchDeckTab('extra')">EXデッキ</button>
+      </div>
+      <div id="deck-list"></div>
+    </div>
+
+    <!-- 右側卡片清單 -->
+    <div class="panel right" id="card-list-panel">
+      <h2>カード一覧 <span id="result-count"></span></h2>
+      <div id="card-list"></div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>
