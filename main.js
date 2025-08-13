@@ -85,8 +85,8 @@ function renderCardInfo() {
   set("card-attr", c.属性 || "");
   set("card-race", c.種族 || "");
   set("card-level", c.レベル || "");
-  set("card-atk", c.攻撃力 || "");
-  set("card-def", c.守備力 || "");
+  set("card-atk", c.攻撃力 === -1 ? "" : c.攻撃力 ?? "");
+  set("card-def", c.守備力 === -1 ? "" : c.守備力 ?? "");
   set("card-gender", c.性別 || "");
   const descHTML = (c.説明 || "")
     .replace(/「(.*?)」/g, (_, word) => {
