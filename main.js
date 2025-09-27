@@ -9,7 +9,7 @@ const typeColors = {
   "超次元": "#EA0000"
 };
 const extraTypes = ["融合", "シンクロ", "エクシーズ", "リンク", "超次元"];
-let searchHistory = [];
+let searchHistory = ["E.R.A"];
 
 init();
 
@@ -88,6 +88,7 @@ function renderCardInfo() {
   set("card-atk", c.攻撃力 === -1 ? "" : c.攻撃力 ?? "");
   set("card-def", c.守備力 === -1 ? "" : c.守備力 ?? "");
   set("card-gender", c.性別 || "");
+  set("card-release", c.追加日 || "");
   const descHTML = (c.説明 || "")
     .replace(/「(.*?)」/g, (_, word) => {
       const encoded = encodeURIComponent(word);
@@ -210,6 +211,10 @@ function applyFiltersAndSearch() {
     result.sort((a, b) => (parseInt(a.守備力) || 0) - (parseInt(b.守備力) || 0));
   } else if (sortOrder === "def-desc") {
     result.sort((a, b) => (parseInt(b.守備力) || 0) - (parseInt(a.守備力) || 0));
+  } else if (sortOrder === "release-asc") {
+    result.sort((a, b) => (parseInt(a.追加日) || 0) - (parseInt(b.追加日) || 0));
+  } else if (sortOrder === "release-desc") {
+    result.sort((a, b) => (parseInt(b.追加日) || 0) - (parseInt(a.追加日) || 0));
   } else {
     result.sort((a, b) => Number(a.id) - Number(b.id)); // 預設依照 ID 排序
   }
